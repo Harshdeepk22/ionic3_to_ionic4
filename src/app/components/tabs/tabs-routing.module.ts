@@ -1,0 +1,65 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { TabsPage } from './tabs.page';
+
+const routes: Routes = [
+  {
+    path: 'TabsPage',
+    component: TabsPage,
+    children:
+      [
+        {
+          path: 'home',
+          children:
+            [
+              {
+                path: '',
+                loadChildren: '../home/home.module#HomePageModule'
+              }
+            ]
+        },
+        {
+          path: 'home1',
+          children:
+            [
+              {
+                path: '',
+                loadChildren: '../home/home.module#HomePageModule'
+              }
+            ]
+        },
+        {
+          path: 'home2',
+          children:
+            [
+              {
+                path: '',
+                loadChildren: '../home/home.module#HomePageModule'
+              }
+            ]
+        },
+        {
+          path: 'TabsPage',
+          redirectTo: '/TabsPage/home',
+          pathMatch: 'full'
+        }
+      ]
+  },
+  {
+    path: 'TabsPage',
+    redirectTo: '/tabTabsPages/home',
+    pathMatch: 'full'
+  }
+];
+
+@NgModule({
+  imports:
+    [
+      RouterModule.forChild(routes)
+    ],
+  exports:
+    [
+      RouterModule
+    ]
+})
+export class TabsPageRoutingModule {}
