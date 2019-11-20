@@ -124,28 +124,28 @@ export class HomePage implements OnInit {
   }
 
   goToProfile() {
-    //this.navCtrl.push("UserProfilePage");
+    this.navCtrl.navigateRoot("UserProfilePage");
   }
 
   goToMessage() {
-    //this.navCtrl.push("MessagePage");
+    this.navCtrl.navigateRoot("MessagePage");
   }
 
   goToCommentPage(post) {
-    //this.navCtrl.push("CommentsPage", { post: post });
+    this.navCtrl.navigateRoot(["CommentsPage", { post: post }]);
   }
 
   goToUserList(users) {
-    //this.navCtrl.push("UserListPage", { users: users });
+    this.navCtrl.navigateRoot(["UserListPage", { users: users }]);
   }
 
   goToPostPage(post?, postOf?) {
     if (post) {
       post.playerId = postOf.playerId;
       post.profilePic = postOf.profilePic;
-      //this.navCtrl.push("PostPage", { post: post });
+      this.navCtrl.navigateRoot(["PostPage", { post: post }]);
     } else {
-      //this.navCtrl.push("PostPage");
+      this.navCtrl.navigateRoot("PostPage");
     }
   }
 
@@ -153,7 +153,7 @@ export class HomePage implements OnInit {
     if (uid == this.uid) {
       this.goToProfile();
     } else {
-      //this.navCtrl.push("OthersProfilePage", { uid: uid });
+      this.navCtrl.navigateRoot(["OthersProfilePage", { uid: uid }]);
     }
   }
 

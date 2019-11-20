@@ -69,7 +69,7 @@ export class NotificationPage implements OnInit {
       if (res) {
         this.notificationService.markAsRead(res.postId, this.uid, notification.uid);
         loader.dismiss();
-        //this.navCtrl.push(["home", { post: res }]);
+        this.navCtrl.navigateRoot(["home", { post: res }]);
       } else {
         loader.dismiss();
       }
@@ -95,9 +95,9 @@ export class NotificationPage implements OnInit {
     if (post) {
       post.playerId = postOf.playerId;
       post.profilePic = postOf.profilePic;
-      //this.navCtrl.push("PostPage", { post: post });
+      this.navCtrl.navigateRoot(["PostPage", { post: post }]);
     } else {
-      //this.navCtrl.push("PostPage");
+      this.navCtrl.navigateRoot("PostPage");
     }
   }
 
