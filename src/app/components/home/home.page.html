@@ -78,20 +78,32 @@
 
       <!-- foooter row with buttons likes comment and share  -->
       <ion-row class="footer-row">
+<<<<<<< HEAD
         <ion-col class="ion-no-padding" chatbubbles-center>
+=======
+        <ion-col no-padding chatbubbles-center>
+>>>>>>> d8eb9954f2b7cdd6b9b635d8b44ef9d01be68d96
           <button ion-button icon-left clear small class="footer-btn" *ngIf="post?.liked | async as liked" [ngClass]="{like: liked.length==1}"
             (click)="likePost(post, liked.length==1, postOf.playerId)">
             <ion-icon name="heart"></ion-icon>&nbsp;&nbsp; {{liked.length==1?'Unlike':'Like'}}
           </button>
         </ion-col>
         <!-- photo button -->
+<<<<<<< HEAD
         <ion-col class="ion-no-padding" chatbubbles-center>
+=======
+        <ion-col no-padding chatbubbles-center>
+>>>>>>> d8eb9954f2b7cdd6b9b635d8b44ef9d01be68d96
           <button ion-button icon-left clear small class="footer-btn" (click)="goToCommentPage(post)">
             <ion-icon name="chatbubbles"></ion-icon>&nbsp;&nbsp; Comment
           </button>
         </ion-col>
         <!-- check-in button -->
+<<<<<<< HEAD
         <ion-col class="ion-no-padding" chatbubbles-center>
+=======
+        <ion-col no-padding chatbubbles-center>
+>>>>>>> d8eb9954f2b7cdd6b9b635d8b44ef9d01be68d96
           <button ion-button icon-left clear small class="footer-btn last" (click)="goToPostPage(post, postOf)">
             <ion-icon name="share-alt"></ion-icon>&nbsp;&nbsp; Share
           </button>

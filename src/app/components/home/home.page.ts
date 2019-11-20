@@ -45,7 +45,6 @@ export class HomePage implements OnInit {
       this.navCtrl.navigateRoot(['LoginPage', { tabsHideOnSubPages: true }]);
     });
   }
-
   async showToast(message) {
     let toast = await this.toastCtrl.create({
       message: message,
@@ -73,6 +72,7 @@ export class HomePage implements OnInit {
   }
 
   getUnreadMessageCount() {
+
     this.homeService.getMessageCount(this.uid).valueChanges().subscribe(items => {
       return items.map((item: any) => {
         this.msgCount = 0;
@@ -90,7 +90,6 @@ export class HomePage implements OnInit {
       });
     });
   }
-
   async getFollowedUsersPost(uid, refresher?) {
     this.followedUsersPost = await this.homeService.getPosts(uid).pipe(map( (items: any) => {
       if (items.message) {

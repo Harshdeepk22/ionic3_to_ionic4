@@ -14,10 +14,10 @@ export class TabsPage implements OnInit {
   // search = 'SearchPage';
   // profile = 'UserProfilePage';
   home = 'home';
+
   notifications = 'notification';
   search = 'search';
   profile = 'user-profile';
-  
   public notificationCount: number;
   constructor(
     private navCtrl: NavController,
