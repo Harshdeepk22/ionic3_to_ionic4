@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
   }
 
   goToSignup() {
-    this.navctrl.navigateForward("SignupPage");
+    this.navctrl.navigateForward("signup");
   }
   goToForgotPassword() {
     this.navctrl.navigateForward("ForgetPasswordPage");

@@ -22,8 +22,9 @@ export class LoginServiceService {
                     let oneSignalIds = (ids == null) ? { userId: 'noId', pushToken: 'noId' } : ids;
                     this.afAuth.auth.signInWithEmailAndPassword(email, password)
                         .then(res => {
-                            localStorage.setItem('uid', res.credential.providerId);
-                            this.afire.collection('users').doc(res.credential.providerId).update({
+                            console.log(res);
+                            localStorage.setItem('uid', res.user.uid);
+                            this.afire.collection('users').doc(res.user.uid).update({
                                 lastLoginAt: Date.now(),
                                 playerId: oneSignalIds.userId,
                                 pushToken: oneSignalIds.pushToken

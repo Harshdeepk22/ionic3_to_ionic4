@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http'
 
 import { IonicModule } from '@ionic/angular';
-
-import { SignupPage } from './signup.page';
+import { MomentModule } from 'ngx-moment';
+import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SignupPage
+    component: HomePage
   }
 ];
 
@@ -19,11 +18,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     IonicModule,
+    MomentModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SignupPage]
+  declarations: [HomePage]
 })
-export class SignupPageModule {}
+export class HomePageModule {}
