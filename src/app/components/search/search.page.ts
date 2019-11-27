@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController, LoadingController, ToastController, Events } from '@ionic/angular';
 import { SearchService } from '../../services/search.service';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
+import {  } from 'rxjs/add/operator/take';
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
@@ -27,12 +30,12 @@ export class SearchPage implements OnInit {
 		});
 		loader.present().then(() => {
 			this.uid = localStorage.getItem('uid');
-			this.users = this.usersCopy = this.searchService.usersList().valueChanges().subscribe(items => {
+			this.users = this.usersCopy = this.searchService.usersList().valueChanges().pipe(map( items => {
 				return items.map((item: any) => {
 					item.checkIsFollowing = this.searchService.checkIsFollowing(item.uid, this.uid).valueChanges();
 					return { ...item };
 				});
-			});
+			}));
 		}).then(() => {
 			loader.dismiss();
 		});
@@ -40,12 +43,12 @@ export class SearchPage implements OnInit {
 	onEnterSearch(event) {
 		let val = event.target.value;
 		if (val && val.trim() != '') {
-			this.users = this.searchService.SearchUser(val).valueChanges().subscribe(items => {
+			this.users = this.searchService.SearchUser(val).valueChanges().pipe(map( items => {
 				return items.map((item: any) => {
 					item.checkIsFollowing = this.searchService.checkIsFollowing(item.uid, this.uid).valueChanges();
 					return { ...item };
 				});
-			});
+			}));
 		} else {
 			this.users = this.usersCopy;
 		}

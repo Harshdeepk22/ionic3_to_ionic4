@@ -49,17 +49,17 @@ const routes: Routes = [
             ]
         },
         {
-          path: 'TabsPage',
+          path: '',
           redirectTo: '/TabsPage/home',
           pathMatch: 'full'
         }
       ]
   },
-  {
-    path: 'TabsPage',
-    redirectTo: '/tabTabsPages/home',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: 'TabsPage',
+  //   redirectTo: '/tabTabsPages/home',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({

@@ -16,9 +16,9 @@ export class SignupPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     });
-   }
-
+  }
   ngOnInit() {
+    
   }
 
   onRegister() {
@@ -27,6 +27,28 @@ export class SignupPage implements OnInit {
     let confirmPassword = this.signupForm.controls['confirmPassword'].value;
     let email = this.signupForm.controls['email'].value;
     this.signUpService.registerUser(username, email, password, confirmPassword);
+  }
+
+  goToLogin() {
+    this.navctrl.navigateRoot(["LoginPage", { tabsHideOnSubPages: true }]);
+  }
+
+  ionViewWillEnter() { //required to hide tabs on this
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        tabs[key].style.transform = 'translateY(56px)';
+      });
+    }
+  }
+
+  ionViewDidLeave() { //required to show tabs on home page
+    let tabs = document.querySelectorAll('.tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        tabs[key].style.transform = 'translateY(0)';
+      });
+    }
   }
 
 }

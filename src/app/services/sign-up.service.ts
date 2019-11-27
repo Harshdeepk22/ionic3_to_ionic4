@@ -42,7 +42,7 @@ export class SignUpService {
                             this.afire.collection('users').doc(res.user.uid).collection('profile').doc('detailedInfo').set({
                                 username: username.charAt(0).toUpperCase() + username.slice(1),
                                 email: email,
-                                mobileNumber: res.phoneNumber,
+                                mobileNumber: res.user.phoneNumber,
                                 phoneNumber: '',
                                 about: '',
                                 birthDate: '',

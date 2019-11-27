@@ -21,6 +21,7 @@ export class HomeService {
   }
 
   getUserInfo(uid) {
+      console.log(">>>>>>>>>",this.users.doc(uid));
       return this.users.doc(uid);
   }
 

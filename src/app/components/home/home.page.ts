@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController, LoadingController, ToastController, Events } from '@ionic/angular';
+import { Router,NavigationExtras } from '@angular/router';
 import { HomeService } from '../../services/home.service';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -13,7 +14,6 @@ import {  } from 'rxjs/add/operator/take';
 })
 export class HomePage implements OnInit {
 
-
   public followedUsersPost: Observable<any>;
   public loggedinUserInfo;
   public uid: string;
@@ -24,7 +24,9 @@ export class HomePage implements OnInit {
     private loadingCtrl: LoadingController,
     private homeService: HomeService,
     private toastCtrl: ToastController,
-    private events: Events) {
+    private events: Events,
+    private router: Router
+    ) {
       this.construfun();
   }
 
@@ -65,9 +67,9 @@ export class HomePage implements OnInit {
       this.uid = localStorage.getItem('uid');
       this.getUnreadMessageCount();
       this.homeService.getNotificationCount(localStorage.getItem('uid')).valueChanges()
-        .subscribe(res => {
-          this.events.publish('notificationCount', res.length);
-        });
+      .subscribe(res => {
+        this.events.publish('notificationCount', res.length);
+      });
     }
   }
 
@@ -128,7 +130,7 @@ export class HomePage implements OnInit {
   }
 
   goToMessage() {
-    this.navCtrl.navigateRoot("MessagePage");
+    this.navCtrl.navigateRoot("message");
   }
 
   goToCommentPage(post) {
@@ -141,11 +143,17 @@ export class HomePage implements OnInit {
 
   goToPostPage(post?, postOf?) {
     if (post) {
+      console.log(post);
       post.playerId = postOf.playerId;
       post.profilePic = postOf.profilePic;
-      this.navCtrl.navigateRoot(["PostPage", { post: post }]);
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          post: JSON.stringify(post)
+        }
+      };
+      this.router.navigate(['post'],navigationExtras );
     } else {
-      this.navCtrl.navigateRoot("PostPage");
+      this.router.navigate(['post']);
     }
   }
 
