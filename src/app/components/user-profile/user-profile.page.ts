@@ -98,7 +98,7 @@ export class UserProfilePage implements OnInit {
         }
       ]
     });
-    alert.present();
+    alert.present(); 
   }
 
   removeImageFromStorage(url) {
@@ -107,28 +107,28 @@ export class UserProfilePage implements OnInit {
   }
 
   goToEditProfile() {
-    this.navCtrl.navigateRoot("EditProfilePage");
+    this.navCtrl.navigateRoot("edit-profile");
   }
   goToFollowingToList() {
-    this.navCtrl.navigateRoot("FollowingListPage");
+    this.navCtrl.navigateRoot("following-list");
   }
   goToFollowedByList() {
-    this.navCtrl.navigateRoot("FollowerListPage");
+    this.navCtrl.navigateRoot("follower-list");
   }
   goToSettings() {
-    this.navCtrl.navigateRoot("SettingsPage");
+    this.navCtrl.navigateRoot("settings");
   }
   goToUserList(users) {
-    this.navCtrl.navigateRoot(["UserListPage", { users: users }]);
+    this.navCtrl.navigateRoot(["user-list", { users: users }]);
   }
 
   goToPostPage(post?, postOf?) {
     if (post) {
       post.playerId = postOf.playerId;
       post.profilePic = postOf.profilePic;
-      this.navCtrl.navigateRoot(["PostPage", { post: post }]);
+      this.navCtrl.navigateRoot(["post", { post: post }]);
     } else {
-      this.navCtrl.navigateRoot("PostPage");
+      this.navCtrl.navigateRoot("post");
     }
   }
 

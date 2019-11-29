@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
       this.getFollowedUsersPost(this.uid);
       loader.dismiss();
     }, error => {
-      this.navCtrl.navigateRoot(['LoginPage', { tabsHideOnSubPages: true }]);
+      this.navCtrl.navigateRoot(['login', { tabsHideOnSubPages: true }]);
     });
   }
   async showToast(message) {
@@ -62,7 +62,7 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter() {
     if (localStorage.getItem('uid') == null) {
-      this.navCtrl.navigateRoot(['LoginPage', { tabsHideOnSubPages: true }]);
+      this.navCtrl.navigateRoot(['login', { tabsHideOnSubPages: true }]);
     } else {
       this.uid = localStorage.getItem('uid');
       this.getUnreadMessageCount();
@@ -126,7 +126,7 @@ export class HomePage implements OnInit {
   }
 
   goToProfile() {
-    this.navCtrl.navigateRoot("UserProfilePage");
+    this.navCtrl.navigateRoot("user-profile");
   }
 
   goToMessage() {
@@ -134,16 +134,27 @@ export class HomePage implements OnInit {
   }
 
   goToCommentPage(post) {
-    this.navCtrl.navigateRoot(["CommentsPage", { post: post }]);
+    console.log(post);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        post: JSON.stringify(post)
+      }
+    };
+    this.navCtrl.navigateRoot(["comments"], navigationExtras);
   }
 
   goToUserList(users) {
-    this.navCtrl.navigateRoot(["UserListPage", { users: users }]);
+    console.log('form',users);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        users: JSON.stringify(users)
+      }
+    };
+    this.navCtrl.navigateRoot(["user-list"], navigationExtras);
   }
 
   goToPostPage(post?, postOf?) {
     if (post) {
-      console.log(post);
       post.playerId = postOf.playerId;
       post.profilePic = postOf.profilePic;
       let navigationExtras: NavigationExtras = {
@@ -161,7 +172,7 @@ export class HomePage implements OnInit {
     if (uid == this.uid) {
       this.goToProfile();
     } else {
-      this.navCtrl.navigateRoot(["OthersProfilePage", { uid: uid }]);
+      this.navCtrl.navigateRoot(["others-profile",uid ]);
     }
   }
 

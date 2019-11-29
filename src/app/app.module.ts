@@ -17,6 +17,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {IonicStorageModule} from '@ionic/storage';
 import {MomentModule} from 'angular2-moment/moment.module';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,8 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
     AngularFirestoreModule,
     AngularFireAuthModule,
     MomentModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    NgxIonicImageViewerModule
   ],
   providers: [
     StatusBar,
